@@ -93,29 +93,29 @@ O fim do arquivo é detectado quando o read() retorna o valor 0, indicando que o
 ## Exercício 4 - Cópia de Arquivo
 
 ### Resultados:
-- Bytes copiados: _____
-- Operações: _____
-- Tempo: _____ segundos
-- Throughput: _____ KB/s
+- Bytes copiados: __1364___
+- Operações: ___6__
+- Tempo: __0.000174___ segundos
+- Throughput: __7655.35___ KB/s
 
 ### Verificação:
 ```bash
 diff dados/origem.txt dados/destino.txt
 ```
-Resultado: [ ] Idênticos [ ] Diferentes
+Resultado: [X] Idênticos [ ] Diferentes
 
 ### Análise
 
 **1. Por que devemos verificar que bytes_escritos == bytes_lidos?**
 
 ```
-[Sua análise aqui]
+Devemos verificar se os bytes_escritos são iguais ao bytes lidos, pois assim podemos confirmar se todo o arquivo foi lido e copiado corretamente.
 ```
 
 **2. Que flags são essenciais no open() do destino?**
 
 ```
-[Sua análise aqui]
+As flags essenciais no open() do destino são O_WRONLY , O_CREAT e O_TRUNC
 ```
 
 ---
@@ -127,19 +127,19 @@ Resultado: [ ] Idênticos [ ] Diferentes
 **1. Como as syscalls demonstram a transição usuário → kernel?**
 
 ```
-[Sua análise aqui]
+AS syscalls demonstram a transição entre usuario e kernel por meio do strace que retorna o numero de bytes.
 ```
 
 **2. Qual é o seu entendimento sobre a importância dos file descriptors?**
 
 ```
-[Sua análise aqui]
+Os files descriptors sao essenciais para identificar o estado do processo e sua conexão com recursos de entrada e saida.
 ```
 
 **3. Discorra sobre a relação entre o tamanho do buffer e performance:**
 
 ```
-[Sua análise aqui]
+Quanto maior o buffer melhor foi a performance, pois um buffer maior consegue armazenar mais caracteres, assim fazendo menos chamadas.
 ```
 
 ### Comparação de Performance
@@ -150,12 +150,12 @@ time ./ex4_copia
 time cp dados/origem.txt dados/destino_cp.txt
 ```
 
-**Qual foi mais rápido?** _____
+**Qual foi mais rápido?** __teste do programa___
 
 **Por que você acha que foi mais rápido?**
 
 ```
-[Sua análise aqui]
+Crei que o teste do programa foi mais rapido devido a menos chamadas de sistema.
 ```
 
 ---
