@@ -46,13 +46,13 @@ strace -e open,read,close ./ex2_leitura
 **1. Por que o file descriptor não foi 0, 1 ou 2?**
 
 ```
-[Sua análise aqui]
+O file descriptor nao foi 0, 1 ou 2 porque estes três primeiros decritores ja estavam ocupados desde o inicio do programa
 ```
 
 **2. Como você sabe que o arquivo foi lido completamente?**
 
 ```
-[Sua análise aqui]
+O arquivo foi lido corretamente, pois a funcao open() retorna o menor numero nao negativo inteiro que identifica o arquivo aberto na tabela de descritores do processo.
 ```
 
 ---
@@ -60,32 +60,32 @@ strace -e open,read,close ./ex2_leitura
 ## Exercício 3 - Contador com Loop
 
 ### Resultados (BUFFER_SIZE = 64):
-- Linhas: _____ (esperado: 25)
-- Caracteres: _____
-- Chamadas read(): _____
-- Tempo: _____ segundos
+- Linhas: ___24__ (esperado: 25)
+- Caracteres: __1299___
+- Chamadas read(): __21___
+- Tempo: __0.000127___ segundos
 
 ### Experimentos com buffer:
 
 | Buffer Size | Chamadas read() | Tempo (s) |
 |-------------|-----------------|-----------|
-| 16          |                 |           |
-| 64          |                 |           |
-| 256         |                 |           |
-| 1024        |                 |           |
+| 16          |       82        | 0.000147  |
+| 64          |       21        | 0.000127  |
+| 256         |       6         | 0.000065  |
+| 1024        |       2         | 0.000063  |
 
 ### Análise
 
 **1. Como o tamanho do buffer afeta o número de syscalls?**
 
 ```
-[Sua análise aqui]
+Quanto maior o tamanho do buffer, menor é a quantidade de chamadas.
 ```
 
 **2. Como você detecta o fim do arquivo?**
 
 ```
-[Sua análise aqui]
+O fim do arquivo é detectado quando o read() retorna o valor 0, indicando que o offset do arquivo esta ou passou do fim do arquivo.
 ```
 
 ---
